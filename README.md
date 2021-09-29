@@ -1,4 +1,4 @@
-#Printed Circuit Board
+# Printed Circuit Board
 
 >This program describes a printed circuit board and provides ways to interact with it.
 
@@ -7,7 +7,7 @@
 PCB in this implementation is an array of fixed length of contacts.
 Contacts have coordinates, type (input or output) and number of connected contact, if it exists.
 
-#What do you can do with this program:
+# What do you can do with this program:
 
 * You can add contacts to your PCB, but number of contacts is limited;
 * You can get current information about your PCB;
