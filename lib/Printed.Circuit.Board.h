@@ -30,7 +30,7 @@ namespace Lab3A {
             Contact();
             Contact(contactType t, int x, int y);
         };
-        const static unsigned short maxNumber = 15;
+        const static unsigned short maxNumber = 6;
         Contact contacts[maxNumber];
         unsigned short currentNumber;
 
