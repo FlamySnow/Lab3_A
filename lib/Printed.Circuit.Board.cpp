@@ -75,11 +75,12 @@ namespace Lab3A {
         return true;
     }
 
-    void printedCircuitBoard::addContact() {
-        Contact c = inputContact();
+    void printedCircuitBoard::addContact(Contact c) {
         if (currentNumber == maxNumber) {
             throw std::overflow_error("Cannot add more contacts!");
         }
+        if (!isCorrectCoordinates(c.x, c.y))
+            throw std::invalid_argument("There is a contact at this place already!");
         contacts[currentNumber] = c;
         currentNumber++;
     }
@@ -91,22 +92,18 @@ namespace Lab3A {
         contacts[c2].numberOfContact = c1;
     }
 
-    void printedCircuitBoard::printGroup() const {
+    printedCircuitBoard printedCircuitBoard::groupOfContacts() const {
+        printedCircuitBoard group;
         int t;
         std::cout << "Enter type of contact (0 for in, 1 for out): --> ";
         checkInput(t);
         contactType type = isCorrectType(t);
-        bool is = false;
-        std::cout << "The following contacts are of this type: ";
         for (int i = 0; i < currentNumber; ++i) {
             if (contacts[i].type == type){
-                std::cout << i << " ";
-                is = true;
+                group.addContact(contacts[i]);
             }
         }
-        if (!is) {
-            std::cout << "there is no such contacts." << std::endl;
-        }
+        return group;
     }
 
     double printedCircuitBoard::lengthOfTrack(short c1, short c2) {
@@ -120,6 +117,14 @@ namespace Lab3A {
         int y1 = contacts[c1].y;
         int y2 = contacts[c2].y;
         return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+    }
+
+    bool printedCircuitBoard::isCorrectCoordinates(int x, int y) {
+        for (int i = 0; i < currentNumber; ++i) {
+            if (contacts[i].x == x && contacts[i].y == y)
+                return false;
+        }
+        return true;
     }
 
 }

@@ -5,6 +5,7 @@ using namespace Lab3A;
 int main() {
     int a = 0;
     short c1, c2;
+    printedCircuitBoard::Contact c;
     printedCircuitBoard p;
     std::cout << "Hello! You can do many things to printed circuit board, in particular:" << std::endl;
     do {
@@ -12,7 +13,7 @@ int main() {
         std::cout << "1. Print information about PCB;" << std::endl;
         std::cout << "2. Add contact on PCB;" << std::endl;
         std::cout << "3. Establish connect between contacts;" << std::endl;
-        std::cout << "4. Print numbers of contacts that are in the same group;" << std::endl;
+        std::cout << "4. Get contacts that are in the same group;" << std::endl;
         std::cout << "5. Get length of the track between contacts." << std::endl;
         std::cout << "Make your choice: --> ";
         checkInput(a);
@@ -24,7 +25,8 @@ int main() {
                 }
                     break;
                 case 2: {
-                    p.addContact();
+                    c = printedCircuitBoard::inputContact();
+                    p.addContact(c);
                 }
                     break;
                 case 3: {
@@ -36,7 +38,7 @@ int main() {
                 }
                     break;
                 case 4: {
-                    p.printGroup();
+                    p.groupOfContacts().print();
                 }
                     break;
                 case 5: {

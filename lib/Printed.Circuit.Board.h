@@ -21,8 +21,8 @@ namespace Lab3A {
     };
 
     class printedCircuitBoard {
-    private:
-        struct Contact { //Struct should be in the class or no?
+    public:
+        struct Contact { //Struct should be in the class or no? Public or private?
             contactType type;
             int x;
             int y;
@@ -30,20 +30,24 @@ namespace Lab3A {
             Contact();
             Contact(contactType t, int x, int y);
         };
-        const static unsigned short maxNumber = 6;
+    private:
+        //State of class
+        const static unsigned short maxNumber = 10;
         Contact contacts[maxNumber];
         unsigned short currentNumber;
-
+        //Methods
+        bool isCorrectCoordinates (int x, int y);
         static contactType isCorrectType (int t);
         [[nodiscard]] inline bool isCorrectNumber (short n) const {return (n < currentNumber && n >= 0);}
         bool isCorrectConnection (short c1, short c2);
     public:
-        inline printedCircuitBoard():currentNumber(0) {};
+        //inline unsigned short getCurrentNumber() {return currentNumber;};
+        inline printedCircuitBoard():currentNumber(0) {}; //Implementation is empty because when this constructor is called, constructor of each contact is called too
         static Contact inputContact() ;
         void print() const;
-        void addContact();
+        void addContact(Contact c);
         void establishConnect (short c1, short c2);
-        void printGroup() const;
+        [[nodiscard]] printedCircuitBoard groupOfContacts() const;
         double lengthOfTrack (short c1, short c2);
     };
 
